@@ -13,8 +13,10 @@ const refs = {
   
     function onInputSearch(event) {
   const query = event.target.value;
-  event.target.value = query;
-      API.fetchCountryByName(query).then(renderMarkup).catch(onFetchError);
+      event.target.value = query;
+      if (query.trim()) {
+        API.fetchCountryByName(query).then(renderMarkup).catch(onFetchError);
+      }
     }
 function getCountries(data) {
   const countriesList = data
@@ -49,6 +51,7 @@ function getCountryByName(data) {
 
 function deleteCountry() {
   refs.countryInfo.innerHTML = '';
+
 }
 
 function deleteCountries() {
